@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.example'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    implementation("com.fasterxml.jackson.core:jackson-databind:2.17.2")
+    compileOnly("org.projectlombok:lombok:1.18.34")
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
