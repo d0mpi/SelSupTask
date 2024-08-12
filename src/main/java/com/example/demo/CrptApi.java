@@ -24,9 +24,9 @@ public class CrptApi {
         this.semaphore = new Semaphore(requestLimit);
         this.scheduler = Executors.newScheduledThreadPool(1);
 
-        scheduler.scheduleAtFixedRate(() -> {
-            semaphore.release(requestLimit - semaphore.availablePermits());
-        }, 0, timeUnit.toMillis(1), TimeUnit.MILLISECONDS);
+        scheduler.scheduleAtFixedRate(() ->
+                semaphore.release(requestLimit - semaphore.availablePermits()),
+                0, timeUnit.toMillis(1), TimeUnit.MILLISECONDS);
     }
 
     public static void main(String[] args) throws InterruptedException, IOException, ExecutionException {
